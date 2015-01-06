@@ -1,0 +1,10 @@
+###chmod
+I used man to take a look at the chmod command. It changes the file mode or access control lists.
+It shows a few generic options such as -f so you don't display an error mesage if chmod couldn't modify the file. 
+looking through the manual I don't see anything about the break down of how to really change the mode in terms of rwx. Am I missing something here? 
+
+### strings and symbols
+Two unique methods symbols have are the all_symbols => array and the id2name method. The all_symbols makes an array of all the symbols currently in ruby. The id2name method just pulls the name of the symbol. A couple unique methods for strings would be strip and include?. The include? method returns true if str contains the given string or character. For example "hello".include? "lo" would be true because hello has the string lo inside of it. However if it was 'hello'.include ol it would return false because the string ol isn't inside of hello. Strip takes away any tailing and leading whitespace.
+
+### Enumerable
+The reject method lets you go through an array to find something that is false. You could use this to look at a range of numbers and figure out what numbers are not even or divisable by 3. Could you use this to go through a big list and see what doesn't meet some standard? 
