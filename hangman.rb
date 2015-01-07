@@ -2,7 +2,7 @@
 
 require 'pry'
 require 'set'
-
+#words = ['test']
 words = ['angus',
          'onomatopeia',
          'mississippi',
@@ -23,8 +23,12 @@ def greeting
   puts "Welcome to hang man"
 end
 
-def game_over
-  
+def game_over(turn_count)
+  if turn_count == 0
+    puts "YOU LOSE"
+  else
+    puts "you WIN"
+  end
 end
 
 def prompt_player
@@ -32,7 +36,7 @@ def prompt_player
   return guess = $stdin.gets.chomp
 end
 
-def hangman(words)
+ def hangman(words)
   turn_count = ARGV.empty? ? 6 : ARGV[0].to_i
   guessed = Set.new
   answer = words.sample(1)[0] # words[rand(words.length)]
@@ -45,7 +49,8 @@ def hangman(words)
       turn_count -= 1
     end
    end
-  game_over 
-end
+  game_over(turn_count)
 
-hangman(words)
+ end
+
+ hangman(words)
