@@ -20,30 +20,32 @@ def finished? (turns, guesses, answer)
 end
 
 def greeting
-  # TODO: tell the player about hangman
+  puts "Welcome to hang man"
 end
 
 def game_over
-  # TODO: tell the player what the word was and if they won or lost
+  
 end
 
 def prompt_player
-  # TODO: get user input / show some status
+  #binding.pry
+  return guess = $stdin.gets.chomp
 end
 
 def hangman(words)
-  turn_count = argv.empty? ? 6 : argv[0].to_i
-  guessed = set.new
-  answer = words.sample(1)[0]
-  greeting # TODO: Do I need an argument?
+  turn_count = ARGV.empty? ? 6 : ARGV[0].to_i
+  guessed = Set.new
+  answer = words.sample(1)[0] # words[rand(words.length)]
+  greeting
+  #binding.pry
   until finished?(turn_count, guessed, answer)
     guess = prompt_player
-    guesses.add(guess)
+    guessed.add(guess) 
     unless answer.include?(guess)
       turn_count -= 1
     end
-  end
-  game_over # TODO: Do I need an argument?
+   end
+  game_over 
 end
 
 hangman(words)
