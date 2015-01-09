@@ -2,18 +2,18 @@
 
 require 'pry'
 require 'set'
-words = ['test']
-#words = ['angus',
-         #'onomatopeia',
-         #'mississippi',
-         #'cookies',
-         #'terminal',
-         #'illness',
-         #'communist',
-         #'dictator',
-         #'capitalist',
-         #'marxist',
-         #'darwinism']
+#words = ['test']
+words = ['angus',
+         'onomatopeia',
+         'mississippi',
+         'cookies',
+         'terminal',
+         'illness',
+         'communist',
+         'dictator',
+         'capitalist',
+         'marxist',
+         'darwinism']
 
 def finished? (turns, guesses, answer)
   turns.zero? || answer.chars.all? { |l| guesses.include?(l) }
@@ -24,25 +24,41 @@ def greeting
 end
 
 
-binding.pry
-def Display(guessed,answer)
-
-print answer
-end
 #binding.pry
-def prompt_player()
+
+#binding.pry
+def prompt_player
   #binding.pry
   #if guess.length != 1
-  #return guess = get.chomp
-  guess = $stdin.gets.chomp
+  #guess = gets.chomp
+  guess = $stdin.gets
+
+  #if guess != [/[a-zA-Z]*/] 
+   # puts "Try again foo"
+    #char_check(guess)
+ #end 
+
 end
+
+def display(guessed,guess,answer)
+  answer.each_char  do |c| guessed.include? c 
+  if guessed.include?(c)
+   print c
+  elsif
+    print "_" 
+  end
+end
+
+end
+
 
 def game_over(turn_count,guessed,answer)
   if turn_count == 0
-    puts "YOU LOSE"
+    puts "YOU Lose the Answer was #{answer}"
   else
     puts "you WIN"
   end
+
 end
 
 
@@ -53,7 +69,7 @@ end
   guessed = Set.new
   answer = words.sample(1)[0] # words[rand(words.length)]
   greeting
-  #Display(guessed,answer)
+  #display(guessed,answer)
   #binding.pry
   until finished?(turn_count, guessed, answer)
     guess = prompt_player
@@ -61,9 +77,10 @@ end
     unless answer.include?(guess)
       turn_count -= 1
     end
+    display(guessed,guess,answer)
    end
+  #display(guess,answer)
   game_over(turn_count,guessed,answer)
-  Display(guessed,answer)
- end
+end
 
  hangman(words)
