@@ -52,15 +52,6 @@ def print_board(board)
   #end
 #end
 
-def finished(board,player1,player2)
-winner = win?(board)
-board.all? {|x| x.is_a? String} || winner
-  if winner
-    puts "#{winner} won the game"
-  else
-    puts "game is a draw"
-  end
-end
 
 def win?(board)
 WINS.any? do |x,y,z|
@@ -70,24 +61,32 @@ WINS.any? do |x,y,z|
   end
  end
 
-# def game_over(winner)
-#   if winner
-#   puts "#{winner} won the game"
-#   else
-#   puts "game is a draw "
-#   end
-
-#   #break if 
+def finished(board)
+board.all? {|x| x.is_a? String} || win?(board)
+end
+#binding.pry
+# def winnie(board)
+#  win?(board)
 # end
+
+def game_over(board)
+winner = win?(board)  
+  if winner
+     puts "#{winner} won the game"
+   elsif board.all? {|x| x.is_a? String}
+     puts "game is a draw"
+  #break if 
+  end
+end
 
 
 def tic_tac_toe(board)
   greeting
   player1, player2 = charselect
   turn_count = 1
-until finished(board,player1,player2)
+  until finished(board) 
     print_board(board)
-    puts "Take a Square"
+    puts "\nPlayer please Take a Square\n"
     choice = gets.chomp
     if turn_count.odd?
       board[choice.to_i-1] = player1
@@ -95,11 +94,11 @@ until finished(board,player1,player2)
       board[choice.to_i-1] = player2
     end
     turn_count += 1
-    #binding.pry
   end
-  game_over(winner)
+  game_over(board)
 end
     
+
 
 tic_tac_toe(board)
 #binding.pry
